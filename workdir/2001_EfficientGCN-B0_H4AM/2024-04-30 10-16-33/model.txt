@@ -1,0 +1,309 @@
+EfficientGCN(
+  (input_branches): ModuleList(
+    (0): EfficientGCN_Blocks(
+      (init_bn): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (stem_scn): Spatial_Graph_Layer(
+        (conv): SpatialGraphConv(
+          (gcn): Conv2d(6, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Sequential(
+          (0): Conv2d(6, 64, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (act): Swish()
+      )
+      (stem_tcn): Temporal_Basic_Layer(
+        (conv): Conv2d(64, 64, kernel_size=(5, 1), stride=(1, 1), padding=(2, 0))
+        (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Identity()
+        (act): Swish()
+      )
+      (block-0_scn): Spatial_Graph_Layer(
+        (conv): SpatialGraphConv(
+          (gcn): Conv2d(64, 144, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Sequential(
+          (0): Conv2d(64, 48, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (act): Swish()
+      )
+      (block-0_att): Attention_Layer(
+        (att): ST_Joint_Att(
+          (fcn): Sequential(
+            (0): Conv2d(48, 24, kernel_size=(1, 1), stride=(1, 1))
+            (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): Hardswish()
+          )
+          (conv_t): Conv2d(24, 48, kernel_size=(1, 1), stride=(1, 1))
+          (conv_v): Conv2d(24, 48, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): Swish()
+      )
+      (block-1_scn): Spatial_Graph_Layer(
+        (conv): SpatialGraphConv(
+          (gcn): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Sequential(
+          (0): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (act): Swish()
+      )
+      (block-1_att): Attention_Layer(
+        (att): ST_Joint_Att(
+          (fcn): Sequential(
+            (0): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+            (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): Hardswish()
+          )
+          (conv_t): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1))
+          (conv_v): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): Swish()
+      )
+    )
+    (1): EfficientGCN_Blocks(
+      (init_bn): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (stem_scn): Spatial_Graph_Layer(
+        (conv): SpatialGraphConv(
+          (gcn): Conv2d(6, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Sequential(
+          (0): Conv2d(6, 64, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (act): Swish()
+      )
+      (stem_tcn): Temporal_Basic_Layer(
+        (conv): Conv2d(64, 64, kernel_size=(5, 1), stride=(1, 1), padding=(2, 0))
+        (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Identity()
+        (act): Swish()
+      )
+      (block-0_scn): Spatial_Graph_Layer(
+        (conv): SpatialGraphConv(
+          (gcn): Conv2d(64, 144, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Sequential(
+          (0): Conv2d(64, 48, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (act): Swish()
+      )
+      (block-0_att): Attention_Layer(
+        (att): ST_Joint_Att(
+          (fcn): Sequential(
+            (0): Conv2d(48, 24, kernel_size=(1, 1), stride=(1, 1))
+            (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): Hardswish()
+          )
+          (conv_t): Conv2d(24, 48, kernel_size=(1, 1), stride=(1, 1))
+          (conv_v): Conv2d(24, 48, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): Swish()
+      )
+      (block-1_scn): Spatial_Graph_Layer(
+        (conv): SpatialGraphConv(
+          (gcn): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Sequential(
+          (0): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (act): Swish()
+      )
+      (block-1_att): Attention_Layer(
+        (att): ST_Joint_Att(
+          (fcn): Sequential(
+            (0): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+            (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): Hardswish()
+          )
+          (conv_t): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1))
+          (conv_v): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): Swish()
+      )
+    )
+    (2): EfficientGCN_Blocks(
+      (init_bn): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (stem_scn): Spatial_Graph_Layer(
+        (conv): SpatialGraphConv(
+          (gcn): Conv2d(6, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Sequential(
+          (0): Conv2d(6, 64, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (act): Swish()
+      )
+      (stem_tcn): Temporal_Basic_Layer(
+        (conv): Conv2d(64, 64, kernel_size=(5, 1), stride=(1, 1), padding=(2, 0))
+        (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Identity()
+        (act): Swish()
+      )
+      (block-0_scn): Spatial_Graph_Layer(
+        (conv): SpatialGraphConv(
+          (gcn): Conv2d(64, 144, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Sequential(
+          (0): Conv2d(64, 48, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (act): Swish()
+      )
+      (block-0_att): Attention_Layer(
+        (att): ST_Joint_Att(
+          (fcn): Sequential(
+            (0): Conv2d(48, 24, kernel_size=(1, 1), stride=(1, 1))
+            (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): Hardswish()
+          )
+          (conv_t): Conv2d(24, 48, kernel_size=(1, 1), stride=(1, 1))
+          (conv_v): Conv2d(24, 48, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): Swish()
+      )
+      (block-1_scn): Spatial_Graph_Layer(
+        (conv): SpatialGraphConv(
+          (gcn): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (residual): Sequential(
+          (0): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (act): Swish()
+      )
+      (block-1_att): Attention_Layer(
+        (att): ST_Joint_Att(
+          (fcn): Sequential(
+            (0): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+            (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): Hardswish()
+          )
+          (conv_t): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1))
+          (conv_v): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): Swish()
+      )
+    )
+  )
+  (main_stream): EfficientGCN_Blocks(
+    (block-0_scn): Spatial_Graph_Layer(
+      (conv): SpatialGraphConv(
+        (gcn): Conv2d(96, 192, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (residual): Sequential(
+        (0): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (act): Swish()
+    )
+    (block-0_tcn-0): Temporal_SG_Layer(
+      (act): Swish()
+      (depth_conv1): Sequential(
+        (0): Conv2d(64, 64, kernel_size=(5, 1), stride=(1, 1), padding=(2, 0), groups=64)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (point_conv1): Sequential(
+        (0): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (point_conv2): Sequential(
+        (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1))
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (depth_conv2): Sequential(
+        (0): Conv2d(64, 64, kernel_size=(5, 1), stride=(2, 1), padding=(2, 0), groups=64)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (residual): Sequential(
+        (0): Conv2d(64, 64, kernel_size=(1, 1), stride=(2, 1))
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (block-0_att): Attention_Layer(
+      (att): ST_Joint_Att(
+        (fcn): Sequential(
+          (0): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): Hardswish()
+        )
+        (conv_t): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1))
+        (conv_v): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (act): Swish()
+    )
+    (block-1_scn): Spatial_Graph_Layer(
+      (conv): SpatialGraphConv(
+        (gcn): Conv2d(64, 384, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (residual): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1))
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (act): Swish()
+    )
+    (block-1_tcn-0): Temporal_SG_Layer(
+      (act): Swish()
+      (depth_conv1): Sequential(
+        (0): Conv2d(128, 128, kernel_size=(5, 1), stride=(1, 1), padding=(2, 0), groups=128)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (point_conv1): Sequential(
+        (0): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (point_conv2): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1))
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (depth_conv2): Sequential(
+        (0): Conv2d(128, 128, kernel_size=(5, 1), stride=(2, 1), padding=(2, 0), groups=128)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (residual): Sequential(
+        (0): Conv2d(128, 128, kernel_size=(1, 1), stride=(2, 1))
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (block-1_att): Attention_Layer(
+      (att): ST_Joint_Att(
+        (fcn): Sequential(
+          (0): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): Hardswish()
+        )
+        (conv_t): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1))
+        (conv_v): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (act): Swish()
+    )
+  )
+  (classifier): EfficientGCN_Classifier(
+    (gap): AdaptiveAvgPool3d(output_size=1)
+    (dropout): Dropout(p=0.25, inplace=True)
+    (fc): Conv3d(128, 12, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+  )
+)
